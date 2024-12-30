@@ -7,9 +7,20 @@ export interface Country {
   name: string;
   details: {
     year: number;
-    pib: string;
+    pib: number; // Alterado para number
+    economicBalance: number; // Adicionado saldo de economia
     population: string;
     ideology: string;
+    education: {
+      primary: number;
+      secondary: number;
+      higher: number;
+    };
+    taxes: {
+      poor: number;
+      middle: number;
+      rich: number;
+    };
   };
   images: {
     flag: any;
@@ -22,9 +33,20 @@ export const countries: Country[] = [
     name: 'Brazil',
     details: {
       year: 2024,
-      pib: '2,05 trilhões USD',
+      pib: 20500, // Alterado para number
+      economicBalance: 134, // Adicionado saldo de economia
       population: '212 milhões',
       ideology: 'Democracia',
+      education: {
+        primary: 3,
+        secondary: 4,
+        higher: 5,
+      },
+      taxes: {
+        poor: 1,
+        middle: 2,
+        rich: 3,
+      },
     },
     images: {
       flag: require('../../assets/img/brasil.png'),
@@ -44,9 +66,20 @@ export const countries: Country[] = [
     name: 'Russia',
     details: {
       year: 1944,
-      pib: '1,48 trilhões USD',
+      pib: 14800, // Alterado para number
+      economicBalance: 124, // Adicionado saldo de economia
       population: '144 milhões',
       ideology: 'Federalismo',
+      education: {
+        primary: 2,
+        secondary: 3,
+        higher: 4,
+      },
+      taxes: {
+        poor: 2,
+        middle: 3,
+        rich: 3,
+      },
     },
     images: {
       flag: require('../../assets/img/urss.png'),
@@ -65,10 +98,21 @@ export const countries: Country[] = [
   {
     name: 'Cuba',
     details: {
-      year: 2024,
-      pib: '2,05 trilhões USD',
-      population: '212 milhões',
-      ideology: 'Democracia',
+      year: 1944,
+      pib: 14800, // Alterado para number
+      economicBalance: 124, // Adicionado saldo de economia
+      population: '144 milhões',
+      ideology: 'Socialismo',
+      education: {
+        primary: 2,
+        secondary: 3,
+        higher: 4,
+      },
+      taxes: {
+        poor: 2,
+        middle: 3,
+        rich: 3,
+      },
     },
     images: {
       flag: require('../../assets/img/cuba.png'),
@@ -79,10 +123,11 @@ export const countries: Country[] = [
         image: require('../../assets/img/fidel.png'),
       },
       {
-        name: 'Líder B',
+        name: 'Líder',
         image: require('../../assets/img/img.png'),
       },
     ],
   },
-  // Adicione mais países aqui
+  
+  // Adicione mais países conforme necessário
 ];

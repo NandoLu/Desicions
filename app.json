@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/new-adaptive-icon.png",
         "backgroundColor": "black"
-      }
+      },
+      "package": "com.luizfernandobalbino.Decisions"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "b3acd1fb-c940-450a-a612-49b7b82ae120"
+      }
     }
   }
 }

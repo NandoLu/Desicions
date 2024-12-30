@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
-    padding: 20,
+    padding: 0,
+    paddingTop: '5%',
     width: '100%',
 
     
@@ -26,19 +27,23 @@ const styles = StyleSheet.create({
     width: 120,
     height: 70,
     marginRight: 10,
-    marginLeft: 10,
+    marginLeft: '13%',
   },
   portraitImage: {
     width: 80,
     height: 110,
-    marginRight: 10,
+    margin: 10,
+    marginRight: 20,
+    marginLeft: '13%',
   },
   itemContainer: {
     backgroundColor: 'red',
     flexDirection: 'row',
     alignItems: 'center',
+    marginTop: 10,
     marginBottom: 10,
     width: '100%',
+    height: 120,
     
   },
   FlatList:{
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     
   },
   infoText: {
-    fontSize: 14,
+    fontSize: 12,
   },
   info: {
     fontSize: 16,

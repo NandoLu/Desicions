@@ -18,15 +18,18 @@ const NewGame: React.FC<Props> = ({ navigation }) => {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
 
   useEffect(() => {
-    const resetEducationValues = async () => {
+    const resetValues = async () => {
       await AsyncStorage.removeItem('primaryEducation');
       await AsyncStorage.removeItem('secondaryEducation');
       await AsyncStorage.removeItem('higherEducation');
-      await AsyncStorage.removeItem('currentTurn'); // Limpa o turno 
+      await AsyncStorage.removeItem('poorTax');
+      await AsyncStorage.removeItem('middleTax');
+      await AsyncStorage.removeItem('richTax');
+      await AsyncStorage.removeItem('currentTurn');
       await AsyncStorage.removeItem('currentScenario');
     };
 
-    resetEducationValues();
+    resetValues();
   }, []);
 
   useFocusEffect(
@@ -45,6 +48,15 @@ const NewGame: React.FC<Props> = ({ navigation }) => {
   const startGame = async (country: Country, leader: Leader) => {
     const scenario = { ...country, leader };
     await AsyncStorage.setItem('currentScenario', JSON.stringify(scenario));
+
+    // Armazenar valores iniciais dos sliders
+    await AsyncStorage.setItem('primaryEducation', scenario.details.education.primary.toString());
+    await AsyncStorage.setItem('secondaryEducation', scenario.details.education.secondary.toString());
+    await AsyncStorage.setItem('higherEducation', scenario.details.education.higher.toString());
+    await AsyncStorage.setItem('poorTax', scenario.details.taxes.poor.toString());
+    await AsyncStorage.setItem('middleTax', scenario.details.taxes.middle.toString());
+    await AsyncStorage.setItem('richTax', scenario.details.taxes.rich.toString());
+
     navigation.navigate('GameMain');
   };
 
@@ -61,8 +73,6 @@ const NewGame: React.FC<Props> = ({ navigation }) => {
               <Text style={styles.itemText}>{item.name}</Text>
             </TouchableOpacity>
           )}
-
-          
         />
         <TouchableOpacity onPress={() => setSelectedCountry(null)} style={styles.buttonBack}>
           <Text>Voltar</Text>
