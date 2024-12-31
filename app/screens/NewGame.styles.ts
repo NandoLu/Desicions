@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     padding: 0,
     paddingTop: '5%',
     width: '100%',
@@ -16,11 +16,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 20,
+    color: 'white',
   },
   picker: {
     height: 50,
     width: '100%',
     marginBottom: 20,
+    backgroundColor: 'black',
     
   },
   flagImage: {
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
     marginLeft: '13%',
   },
   itemContainer: {
-    backgroundColor: 'red',
+    backgroundColor: 'black',
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 10,
@@ -49,24 +51,28 @@ const styles = StyleSheet.create({
   FlatList:{
     width: '100%',
     marginRight: 0,
-    backgroundColor: 'green',
+    backgroundColor: 'black',
   },
   itemText: {
     fontSize: 18,
     fontWeight: 'bold',
+    color: 'white',
   },
   countryInfo: {
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
+    color: 'white',
     
   },
   infoText: {
     fontSize: 12,
+    color: 'white',
   },
   info: {
     fontSize: 16,
     marginBottom: 5,
+    
   },
   buttonContainer: {
     position: 'absolute',

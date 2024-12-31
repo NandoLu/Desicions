@@ -14,9 +14,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/new-adaptive-icon.png",
-        "backgroundColor": "black"
+        "backgroundColor": "#000000"
       },
-      "package": "com.luizfernandobalbino.Decisions"
+      "statusBar": {
+        "backgroundColor": "#000000"
+      },
+      "package": "Decisions.Luiz.teste"
     },
     "web": {
       "bundler": "metro",
@@ -31,7 +34,7 @@
           "image": "./assets/images/new-splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "gray"
+          "backgroundColor": "#1c1c1b"
         }
       ]
     ],

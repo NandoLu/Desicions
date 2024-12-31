@@ -17,10 +17,11 @@ const AButtonsGame: React.FC = () => {
     setModalVisible(false); // Fecha o modal
   };
 
-  const handleSaveTaxes = (taxes: { low: number; medium: number; high: number }) => {
+  const handleSaveTaxes = (taxes: { poor: number; middle: number; rich: number }) => {
     console.log('Impostos Salvos:', taxes);
     setModalVisible(false);
   };
+  
 
   const handleOpenEducationModal = () => {
     setEducationModalVisible(true); // Abre o modal de educação

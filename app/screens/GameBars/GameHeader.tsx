@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ scenario }) => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: 'red',
+    backgroundColor: 'gray',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

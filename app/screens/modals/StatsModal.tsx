@@ -74,20 +74,6 @@ const StatsModal: React.FC<StatsModalProps> = ({ visible, onClose, pib, flagImag
               borderWidth: 1, // Adicionando a borda
               borderColor: '#000' // Cor da borda
             }}
-            decorator={() => {
-              // Adicionando a linha vermelha vertical para o valor 0
-              return fullSaldoEconomia.length > 0 ? (
-                <View
-                  style={{
-                    position: 'absolute',
-                    height: '100%',
-                    width: 2,
-                    backgroundColor: 'red',
-                    left: (fullSaldoEconomia.length - 1) * (screenWidth - 40) / 24
-                  }}
-                />
-              ) : null;
-            }}
           />
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.buttonText}>Fechar</Text>
