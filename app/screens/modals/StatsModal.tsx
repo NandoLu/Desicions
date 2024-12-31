@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
-import styles from './ModalsFooterStyles';
+import styles from '../../../styles/ModalsFooterStyles';
 
 interface StatsModalProps {
   visible: boolean;

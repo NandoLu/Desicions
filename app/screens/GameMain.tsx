@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, BackHandler, Alert, Image } from 'react-n
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import StatsModal from './modals/StatsModal';
 import AdviceModal from './modals/AdviceModal';
-import styles from './GameMain.styles';
+import styles from '../../styles/GameMain.styles';
 import { useFocusEffect } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { initializeTurn, advanceTurn, months, Turn } from './logic/GameLogic';
@@ -46,10 +46,8 @@ const GameMain: React.FC<Props> = ({ navigation }) => {
   const [educationExpense, setEducationExpense] = useState(0);
   const [taxRevenue, setTaxRevenue] = useState(0); // Estado para a receita de impostos
   const [turnHistory, setTurnHistory] = useState<Turn[]>([]);
-
-
   const [saldoEconomiaHistory, setSaldoEconomiaHistory] = useState<number[]>([]);
-
+  const [taxPopularityImpact, setTaxPopularityImpact] = useState(0); // Estado para o impacto na popularidade
 
   const calculateEducationExpense = async () => {
     const primary = await AsyncStorage.getItem('primaryEducation');
@@ -67,6 +65,16 @@ const GameMain: React.FC<Props> = ({ navigation }) => {
     const calculatedTaxRevenue = (parseInt(poorTax || '0') * 4) + (parseInt(middleTax || '0') * 6) + (parseInt(richTax || '0') * 9);
     setTaxRevenue(calculatedTaxRevenue);
     return calculatedTaxRevenue;
+  };
+
+  const calculateTaxPopularityImpact = async () => {
+    const poorTax = await AsyncStorage.getItem('poorTax');
+    const middleTax = await AsyncStorage.getItem('middleTax');
+    const richTax = await AsyncStorage.getItem('richTax');
+    const impact = 7 - (parseInt(poorTax || '0') * 0.5 + parseInt(middleTax || '0') * 0.75 + parseInt(richTax || '0') * 1);
+    const calculatedTaxPopularityImpact = impact > 0 ? impact : -Math.abs(impact);
+    setTaxPopularityImpact(calculatedTaxPopularityImpact);
+    return calculatedTaxPopularityImpact;
   };
 
   useEffect(() => {
@@ -88,6 +96,7 @@ const GameMain: React.FC<Props> = ({ navigation }) => {
 
           await calculateEducationExpense(); // Calcular despesa de educação
           await calculateTaxRevenue(); // Calcular receita de impostos
+          await calculateTaxPopularityImpact(); // Calcular impacto na popularidade
         }
       } catch (error) {
         console.error('Erro ao carregar o cenário ou turno:', error);
@@ -122,7 +131,8 @@ const GameMain: React.FC<Props> = ({ navigation }) => {
     if (turn) {
       const calculatedEducationExpense = await calculateEducationExpense();
       const calculatedTaxRevenue = await calculateTaxRevenue();
-      const nextTurn = advanceTurn(turn, calculatedEducationExpense, calculatedTaxRevenue);
+      const calculatedTaxPopularityImpact = await calculateTaxPopularityImpact();
+      const nextTurn = advanceTurn(turn, calculatedEducationExpense, calculatedTaxRevenue, calculatedTaxPopularityImpact);
       setTurn(nextTurn);
 
       // Adiciona o saldoEconomia atual ao histórico 
@@ -151,7 +161,6 @@ const GameMain: React.FC<Props> = ({ navigation }) => {
       <GameBottomBar
         turn={turn}
         months={months}
-        onAdvanceTurn={handleAdvanceTurn}
         onShowStatsModal={() => setIsStatsModalVisible(true)}
         onShowAdviceModal={() => setIsAdviceModalVisible(true)}
       />

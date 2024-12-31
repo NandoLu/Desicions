@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
-import styles from './ModalStyle'; // Estilos do modal
+import styles from '../../../styles/ModalStyle'; // Estilos do modal
 import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

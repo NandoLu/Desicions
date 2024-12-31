@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../index'; // Certifique-se de ajustar o caminho conforme necessário
-import styles from './MainPage.styles';
+import styles from '../../styles/MainPage.styles';
 import { MaterialIcons } from '@expo/vector-icons'; // Certifique-se de ter instalado o expo/vector-icons
 
 type MainPageNavigationProp = StackNavigationProp<RootStackParamList, 'Main'>;

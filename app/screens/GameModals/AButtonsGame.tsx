@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importando o useState
 import { View, TouchableOpacity, Image, Text } from 'react-native';
-import styles from './AButtonsGame.styles'; // Estilos do componente
+import styles from '../../../styles/AButtonsGame.styles'; // Estilos do componente
 import TaxModal from './TaxModal'; // Importando a modal
 import EducationModal from './EducationModal'; // Importando a modal de Educação
 
@@ -17,10 +17,12 @@ const AButtonsGame: React.FC = () => {
     setModalVisible(false); // Fecha o modal
   };
 
-  const handleSaveTaxes = (taxes: { poor: number; middle: number; rich: number }) => {
+  const handleSaveTaxes = (taxes: { poor: number; middle: number; rich: number }, taxPopularityImpact: number) => {
     console.log('Impostos Salvos:', taxes);
+    console.log('Impacto na Popularidade:', taxPopularityImpact);
     setModalVisible(false);
   };
+  
   
 
   const handleOpenEducationModal = () => {

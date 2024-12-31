@@ -1,6 +1,6 @@
 export interface Turn {
   year: number;
-  economicBalance: number,
+  economicBalance: number;
   monthIndex: number; // Índice do mês, de 0 (Janeiro) a 11 (Dezembro)
   receita: number; // Receita do turno
   despesas: number; // Despesas do turno
@@ -26,7 +26,7 @@ export const initializeTurn = (year: number, economicBalance: number): Turn => (
   popularidade: 50,  // Inicializa com 50 de popularidade
 });
 
-export const advanceTurn = (currentTurn: Turn, despesaEducacao: number, receitaImpostos: number): Turn => {
+export const advanceTurn = (currentTurn: Turn, despesaEducacao: number, receitaImpostos: number, totalPopularidadeImpacto: number): Turn => {
   const nextMonthIndex = (currentTurn.monthIndex + 1) % 12;
   const nextYear = currentTurn.year + (nextMonthIndex === 0 ? 1 : 0);
   
@@ -35,10 +35,11 @@ export const advanceTurn = (currentTurn: Turn, despesaEducacao: number, receitaI
   
   // Acumula o saldoEconomia (considerando a receita e a despesa)
   const saldoEconomia = currentTurn.saldoEconomia + (totalReceita - totalDespesa);
- 
 
+  console.log(totalPopularidadeImpacto)
+ 
   // Atualiza a popularidade (acumulando o ganho e perda de popularidade)
-  const popularidade = Math.min(100, Math.max(0, currentTurn.popularidade + currentTurn.ganhoPopularidade - currentTurn.perdaPopularidade));
+  const popularidade = Math.min(100, Math.max(0, currentTurn.popularidade + totalPopularidadeImpacto));
 
   return {
     year: nextYear,

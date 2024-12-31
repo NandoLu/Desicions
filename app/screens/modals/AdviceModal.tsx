@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
-import styles from './ModalsFooterStyles';
+import styles from '../../../styles/ModalsFooterStyles';
 
 interface AdviceModalProps {
   visible: boolean;

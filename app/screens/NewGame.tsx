@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image, BackHandler } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { countries, Country, Leader } from './countries';
-import styles from './NewGame.styles';
+import styles from '../../styles/NewGame.styles';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../index';
 import { useFocusEffect } from '@react-navigation/native';

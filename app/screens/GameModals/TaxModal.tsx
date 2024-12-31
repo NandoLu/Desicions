@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
-import styles from './ModalStyle'; // Estilos do modal
+import styles from '../../../styles/ModalStyle'; // Estilos do modal
 import Slider from '@react-native-community/slider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface TaxModalProps {
   visible: boolean;
   onClose: () => void;
-  onSave: (taxes: { poor: number; middle: number; rich: number }) => void;
+  onSave: (taxes: { poor: number; middle: number; rich: number }, taxPopularityImpact: number) => void;
 }
 
 const TaxModal: React.FC<TaxModalProps> = ({ visible, onClose, onSave }) => {
@@ -48,6 +48,11 @@ const TaxModal: React.FC<TaxModalProps> = ({ visible, onClose, onSave }) => {
     return poor * 4 + middle * 6 + rich * 9;
   };
 
+  const calculateTaxPopularityImpact = (poor: number, middle: number, rich: number) => {
+    const impact = 7 - (poor * 0.5 + middle * 0.75 + rich * 1);
+    return impact > 0 ? impact : -Math.abs(impact);
+  };
+
   const handleSave = async () => {
     setPoorTax(tempPoorTax);
     setMiddleTax(tempMiddleTax);
@@ -56,8 +61,10 @@ const TaxModal: React.FC<TaxModalProps> = ({ visible, onClose, onSave }) => {
     await AsyncStorage.setItem('middleTax', tempMiddleTax.toString());
     await AsyncStorage.setItem('richTax', tempRichTax.toString());
     const taxRevenue = calculateTaxRevenue(tempPoorTax, tempMiddleTax, tempRichTax);
+    const taxPopularityImpact = calculateTaxPopularityImpact(tempPoorTax, tempMiddleTax, tempRichTax);
     console.log(`Receita de Impostos: ${taxRevenue}`);
-    onSave({ poor: tempPoorTax, middle: tempMiddleTax, rich: tempRichTax });
+    console.log(`Impacto na Popularidade: ${taxPopularityImpact}`);
+    onSave({ poor: tempPoorTax, middle: tempMiddleTax, rich: tempRichTax }, taxPopularityImpact);
   };
 
   const handleClose = () => {

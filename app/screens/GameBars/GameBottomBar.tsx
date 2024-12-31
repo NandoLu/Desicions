@@ -1,7 +1,6 @@
-// GameHeader/GameBottomBar.tsx
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import styles from './GameBottomBar.styles';
+import styles from '../../../styles/GameBottomBar.styles';
 
 interface GameBottomBarProps {
   turn: {
@@ -11,17 +10,16 @@ interface GameBottomBarProps {
     year: number;
   };
   months: string[];
-  onAdvanceTurn: () => void;
   onShowStatsModal: () => void;
   onShowAdviceModal: () => void;
 }
 
-const GameBottomBar: React.FC<GameBottomBarProps> = ({ turn, months, onAdvanceTurn, onShowStatsModal, onShowAdviceModal }) => {
+const GameBottomBar: React.FC<GameBottomBarProps> = ({ turn, months, onShowStatsModal, onShowAdviceModal }) => {
   return (
     <View style={styles.container}>
       <View style={styles.infoBar}>
         <Text>Saldo: {turn.saldoEconomia}</Text>
-        <Text>Popularidade: {turn.popularidade}</Text>
+        <Text>Popularidade: {turn.popularidade.toFixed(0)}</Text> 
         <Text>{`${months[turn.monthIndex]} de ${turn.year}`}</Text>
       </View>
 
